@@ -1,5 +1,6 @@
 class Item:  # Class
     pay_rate: float = 0.8  # The pay rate after 20% discount
+    all = []
 
     def __init__(self, name: str, price: float, quantity=0):
         # Run validation to received arguments
@@ -11,6 +12,9 @@ class Item:  # Class
         self.name = name
         self.quantity = quantity
 
+    # Actions to executed 
+        Item.all.append(self)
+
     def calculate_total_amount(self):  # Methods
         return self.price * self.quantity
 
@@ -21,20 +25,12 @@ class Item:  # Class
         self.price = self.price * self.pay_rate
 
 
-item1 = Item("Phone", 500, 3)  # These are instance attributes
-item1.apply_discount()
-print(item1.price)
+item1 = Item("Phone", 100, 1)
+item2 = Item("Laptop", 1000, 3)
+item3 = Item("Cable", 10, 5)
+item4 = Item("Mouse", 50, 5)
+item5 = Item("Keyboard", 75, 5)
 
-item2 = Item("Laptop", 10000, 5)
-item2.pay_rate = 0.7
-item2.apply_discount()
-print(item2.price)
-
-# print(item1.name, item1.price)
-# print(item2.name, item2.price)
-# print(item1.calculate_total_amount())
-# print(item2.calculate_total_amount())
-# print(Item.pay_rate)  # he pay_rate is the class attribute which was call directly from the class
-
-print(Item.__dict__)  # All the attributes from the class level
-  # All the attributes from the instance level
+for instance in Item.all:
+    print(instance.name)
+    print(instance.price)
